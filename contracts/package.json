@@ -7,7 +7,10 @@
     "compile": "hardhat compile",
     "clean": "hardhat clean",
     "test": "hardhat test",
-    "deploy": "hardhat ignition deploy ./ignition/modules/IdleQuest.ts"
+    "deploy": "hardhat ignition deploy ./ignition/modules/IdleQuest.ts",
+    "deploy:local": "hardhat ignition deploy ./ignition/modules/IdleQuest.ts --network localhost",
+    "deploy:sepolia": "hardhat ignition deploy ./ignition/modules/IdleQuest.ts --network base-sepolia",
+    "hardhat:node": "hardhat node"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.0",
