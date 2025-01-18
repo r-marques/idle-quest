@@ -1,8 +1,11 @@
 import { HardhatUserConfig, vars } from 'hardhat/config';
 import '@nomicfoundation/hardhat-toolbox';
 
-const INFURA_API_KEY = vars.get('INFURA_API_KEY');
-const BASE_SEPOLIA_PRIVATE_KEY = vars.get('BASE_SEPOLIA_PRIVATE_KEY');
+const INFURA_API_KEY = vars.get('INFURA_API_KEY', 'default-for-CI');
+const BASE_SEPOLIA_PRIVATE_KEY = vars.get(
+  'BASE_SEPOLIA_PRIVATE_KEY',
+  'default-for-CI',
+);
 
 const config: HardhatUserConfig = {
   solidity: '0.8.28',

@@ -244,3 +244,29 @@ curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer eyJhb
 
 {"address":"0x8259ffE425fAE8D89218f02A2d11bb9148254A8e","points":"10"}
 ```
+
+8. Fetch the points for address
+
+```bash
+curl http://localhost:3000/points/0x8259ffE425fAE8D89218f02A2d11bb9148254A8e
+
+{"address":"0x8259ffE425fAE8D89218f02A2d11bb9148254A8e","points":"10"}
+```
+
+## Trade-offs, problems and improvements
+
+#### Problems
+
+The main problem is that I wasn't able to get test funds for the base sepolia network. I have not used base sepolia before so I didn't have any mainnet funds in my account which is required by all the faucets I tried.
+This means that I was not able to deploy the contract to sepolia and having a working environment deployed.
+
+#### Improvements
+
+There are a lot of other things I would have liked to have accomplished but couldn't in the alloted time. This includes:
+
+- Better schema validation using `Joi` or `Zod` for both the environment variables and user requests
+- Add proper json logging to the backend service
+- Better test coverage
+- Swagger and Open api specs
+- More github actions workflows
+- Improve the DB module to use postgres with an ORM like prisma
