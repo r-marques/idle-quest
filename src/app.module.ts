@@ -6,6 +6,7 @@ import { PointsController } from './points/points.controller';
 import { Web3Service } from './web3/web3.service';
 import { AuthModule } from './auth/auth.module';
 import { DbModule } from './db/db.module';
+import { QuestsModule } from './quests/quests.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { DbModule } from './db/db.module';
     Web3Module,
     AuthModule,
     DbModule,
+    QuestsModule,
   ],
   controllers: [PointsController],
   providers: [Web3Service],

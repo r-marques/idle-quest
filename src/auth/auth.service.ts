@@ -49,7 +49,11 @@ export class AuthService {
       throw new BadRequestException('Wrong signature');
     }
 
-    if (signerAddress !== authRequest.address)
+    console.log(signerAddress);
+    if (
+      ethers.getAddress(signerAddress) !==
+      ethers.getAddress(authRequest.address)
+    )
       throw new UnauthorizedException();
 
     // remove used challenge
