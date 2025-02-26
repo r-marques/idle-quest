@@ -48,20 +48,32 @@ export class Web3Service {
       tokenAddress,
       amount,
     );
-    const txReceipt = tx.wait();
+    const txReceipt = await tx.wait();
 
     return txReceipt.hash;
   }
 
   async getQuest(id: bigint): Promise<Quest> {
-    return this.idleQuestContract.getQuest(id);
+    const result = await this.idleQuestContract.getQuest(id);
+    console.log(result[0]);
+
+    return {
+      id: result[0],
+      type: Number(result[1]),
+      tokenAddress: result[2],
+      amount: result[3],
+    };
   }
 
   async completeQuest(id: bigint, userAddress: string): Promise<string> {
     const tx = await this.idleQuestContract.completeQuest(id, userAddress);
-    const txReceipt = tx.wait();
+    const txReceipt = await tx.wait();
 
     return txReceipt.hash;
+  }
+
+  async isQuestCompleted(id: bigint, userAddress: string): Promise<boolean> {
+    return this.idleQuestContract.isQuestCompleted(id, userAddress);
   }
 
   validateAddress(address: string): boolean {
