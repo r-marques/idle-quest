@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ethers } from 'ethers';
 import * as fs from 'fs';
+import { Quest } from './web3.interface';
 
 @Injectable()
 export class Web3Service {
@@ -33,6 +34,34 @@ export class Web3Service {
   async setPoints(address: string, points: bigint) {
     const tx = await this.idleQuestContract.set(address, points);
     await tx.wait();
+  }
+
+  async createQuest(
+    id: bigint,
+    type: number,
+    tokenAddress: string,
+    amount: bigint,
+  ): Promise<string> {
+    const tx = await this.idleQuestContract.createQuest(
+      id,
+      type,
+      tokenAddress,
+      amount,
+    );
+    const txReceipt = tx.wait();
+
+    return txReceipt.hash;
+  }
+
+  async getQuest(id: bigint): Promise<Quest> {
+    return this.idleQuestContract.getQuest(id);
+  }
+
+  async completeQuest(id: bigint, userAddress: string): Promise<string> {
+    const tx = await this.idleQuestContract.completeQuest(id, userAddress);
+    const txReceipt = tx.wait();
+
+    return txReceipt.hash;
   }
 
   validateAddress(address: string): boolean {
